@@ -9,6 +9,6 @@ RUN \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /bin/youtube-dl && \
   chmod a+rx /bin/youtube-dl
 
-ADD yt-podcast.sh /app
+ADD yt-downloader.sh /app
 
-CMD sh yt-podcast.sh
+CMD sh yt-downloader.sh
