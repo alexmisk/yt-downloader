@@ -1,7 +1,7 @@
 #!/bin/sh
 while :
 do
-
+  youtube-dl -U
   flock -n /tmp/yt-downloader.lock sh yt-downloader.sh
   echo "Sleep..."
 
