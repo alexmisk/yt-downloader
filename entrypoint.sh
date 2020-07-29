@@ -3,13 +3,6 @@ while :
 do
   youtube-dl -U
   flock -n /tmp/yt-downloader.lock sh yt-downloader.sh
-  echo "Sleep..."
-
-  if [ ! -z "$FETCH_INTERVAL" ]
-  then
-    sleep $FETCH_INTERVAL
-  else
-    sleep 1d
-  fi
-
+  echo "Sleep for $FETCH_INTERVAL ..."
+  sleep $FETCH_INTERVAL
 done

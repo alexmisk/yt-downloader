@@ -9,7 +9,6 @@ RUN \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /bin/youtube-dl && \
   chmod a+rx /bin/youtube-dl
 
-ADD entrypoint.sh /app
-ADD yt-downloader.sh /app
-
-CMD sh entrypoint.sh
+COPY entrypoint.sh yt-downloader.sh /app/
+ENV FETCH_INTERVAL 1d
+ENTRYPOINT ["/app/entrypoint.sh"]
