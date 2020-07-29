@@ -1,11 +1,10 @@
-FROM alpine:3.12
+FROM python:3.8-alpine3.12
 
 WORKDIR /app
 
 RUN \
   apk update && \
-  apk --no-cache add curl python3 ffmpeg util-linux && \
-  ln -s /usr/bin/python3 /usr/bin/python && \
+  apk --no-cache add curl ffmpeg util-linux && \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /bin/youtube-dl && \
   chmod a+rx /bin/youtube-dl
 
