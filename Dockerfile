@@ -11,4 +11,5 @@ RUN \
 COPY entrypoint.sh yt-downloader.sh /app/
 ENV FETCH_INTERVAL 1d
 ENV FILENAME_TEMPLATE '%(id)s.%(ext)s'
+ENV AUDIO_QUALITY 9
 ENTRYPOINT ["/app/entrypoint.sh"]
