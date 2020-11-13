@@ -2,7 +2,7 @@
 
 youtube-dl $PLAYLIST \
   --playlist-reverse \
-  --output '%(id)s.%(ext)s' \
+  --output $FILENAME_TEMPLATE \
   --download-archive '/out/downloaded.txt' \
   --extract-audio --audio-format mp3 \
   --audio-quality 9 \
