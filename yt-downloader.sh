@@ -2,6 +2,7 @@
 
 youtube-dl $PLAYLIST \
   --playlist-reverse \
+  --playlist-end $NUMBER_OF_ITEMS_TO_DOWNLOAD \
   --output $FILENAME_TEMPLATE \
   --download-archive '/out/downloaded.txt' \
   --extract-audio --audio-format mp3 \

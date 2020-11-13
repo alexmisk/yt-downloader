@@ -9,7 +9,10 @@ RUN \
   chmod a+rx /bin/youtube-dl
 
 COPY entrypoint.sh yt-downloader.sh /app/
+
 ENV FETCH_INTERVAL 1d
 ENV FILENAME_TEMPLATE '%(id)s.%(ext)s'
 ENV AUDIO_QUALITY 9
+ENV NUMBER_OF_ITEMS_TO_DOWNLOAD -1
+
 ENTRYPOINT ["/app/entrypoint.sh"]
