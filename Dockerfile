@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN \
   apk update && \
-  apk --no-cache add bash curl ffmpeg util-linux findutils && \
+  apk --no-cache add bash curl ffmpeg findutils && \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /bin/youtube-dl && \
   chmod a+rx /bin/youtube-dl
 
