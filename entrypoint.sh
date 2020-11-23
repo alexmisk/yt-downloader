@@ -1,7 +1,6 @@
 #!/bin/bash
 while :
 do
-  if [ -z ${PLAYLIST+x} ]; then echo "Please set PLAYLIST environmental variable" && exit 1; fi
   youtube-dl -U
   ./yt-downloader.sh
 
