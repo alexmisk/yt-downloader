@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -z ${PLAYLIST+x} ]; then
+  echo "Nothing to download. Please set PLAYLIST environmental variable" >&2
+  exit 1
+fi
+
 youtube-dl $PLAYLIST \
   --playlist-reverse \
   --playlist-end $NUMBER_OF_ITEMS_TO_DOWNLOAD \
