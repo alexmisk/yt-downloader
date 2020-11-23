@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 while :
 do
   youtube-dl -U
