@@ -1,7 +1,12 @@
 #!/bin/bash
 
-if ! [[ $NUMBER_OF_EPISODES_TO_KEEP =~ ^[0-9]+$ ]] ; then
-   echo "NUMBER_OF_EPISODES_TO_KEEP is not a number. Aborting..." >&2; exit 1
+if [ -z ${NUMBER_OF_EPISODES_TO_KEEP+x} ]; then
+  exit 0
+fi
+
+if ! [[ $NUMBER_OF_EPISODES_TO_KEEP =~ ^[0-9]+$ ]]; then
+   echo "NUMBER_OF_EPISODES_TO_KEEP is not a number. Aborting..." >&2
+   exit 1
 fi
 
 EPISODES_COUNT=$(find /out -regex '.*\.mp3' -printf '%f\n' | wc -l)
