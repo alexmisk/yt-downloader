@@ -3,11 +3,7 @@ while :
 do
   youtube-dl -U
   ./yt-downloader.sh
-
-  if [ ${NUMBER_OF_EPISODES_TO_KEEP+x} ]; then
-    ./cleanup.sh
-  fi
-
+  ./cleanup.sh
   echo "Sleep for $FETCH_INTERVAL ..."
   sleep $FETCH_INTERVAL
 done
