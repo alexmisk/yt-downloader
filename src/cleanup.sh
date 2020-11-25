@@ -9,6 +9,11 @@ if ! [[ $NUMBER_OF_EPISODES_TO_KEEP =~ ^[0-9]+$ ]]; then
    exit 1
 fi
 
+if [ -z ${NUMBER_OF_EPISODES_TO_KEEP+x} ]; then
+  export NUMBER_OF_ITEMS_TO_DOWNLOAD -1
+fi
+
+
 EPISODES_COUNT=$(find /out -regex '.*\.mp3' -printf '%f\n' | wc -l)
 NUMBER_OF_EPISODES_TO_DELETE=$((EPISODES_COUNT-NUMBER_OF_EPISODES_TO_KEEP))
 

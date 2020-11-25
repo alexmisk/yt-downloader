@@ -5,6 +5,19 @@ if [ -z ${PLAYLIST+x} ]; then
   exit 1
 fi
 
+if [ -z ${FILENAME_TEMPLATE+x} ]; then
+  export FILENAME_TEMPLATE='%(epoch)s-%(id)s.%(ext)s'
+fi
+
+if [ -z ${AUDIO_QUALITY+x} ]; then
+  export AUDIO_QUALITY=9
+fi
+
+if [ -z ${NUMBER_OF_ITEMS_TO_DOWNLOAD+x} ]; then
+  export NUMBER_OF_ITEMS_TO_DOWNLOAD=-1
+fi
+
+
 youtube-dl $PLAYLIST \
   --playlist-reverse \
   --playlist-end $NUMBER_OF_ITEMS_TO_DOWNLOAD \

@@ -11,8 +11,5 @@ RUN \
 ADD src /app 
 
 ENV FETCH_INTERVAL 1d
-ENV FILENAME_TEMPLATE '%(epoch)s-%(id)s.%(ext)s'
-ENV AUDIO_QUALITY 9
-ENV NUMBER_OF_ITEMS_TO_DOWNLOAD -1
 
 ENTRYPOINT ["/app/entrypoint.sh"]
