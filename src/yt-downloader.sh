@@ -17,6 +17,7 @@ if [ -z ${NUMBER_OF_ITEMS_TO_DOWNLOAD+x} ]; then
   export NUMBER_OF_ITEMS_TO_DOWNLOAD=-1
 fi
 
+mkdir -p /out
 
 youtube-dl $PLAYLIST \
   --playlist-reverse \
