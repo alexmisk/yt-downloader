@@ -8,11 +8,7 @@ RUN \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /bin/youtube-dl && \
   chmod a+rx /bin/youtube-dl
 
-COPY \
-  entrypoint.sh \
-  yt-downloader.sh \
-  cleanup.sh \
-  /app/
+ADD src /app 
 
 ENV FETCH_INTERVAL 1d
 ENV FILENAME_TEMPLATE '%(epoch)s-%(id)s.%(ext)s'
