@@ -19,6 +19,8 @@ fi
 
 mkdir -p /out
 
+youtube-dl -U
+
 youtube-dl $PLAYLIST \
   --playlist-reverse \
   --playlist-end $NUMBER_OF_ITEMS_TO_DOWNLOAD \
