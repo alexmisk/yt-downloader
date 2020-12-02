@@ -10,6 +10,4 @@ RUN \
 
 ADD src /app 
 
-ENV FETCH_INTERVAL 1d
-
 ENTRYPOINT ["/app/entrypoint.sh"]
