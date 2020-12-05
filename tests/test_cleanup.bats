@@ -12,7 +12,7 @@ teardown () {
 main () {
   docker run --rm \
     --entrypoint /app/cleanup.sh \
-    -v "$(pwd)/out":/out \
+    --volume "$(pwd)/out":/out \
     --env-file env.list \
     localhost:5000/alexmisk/yt-downloader:latest
 }
