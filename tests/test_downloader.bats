@@ -10,8 +10,8 @@ teardown () {
 
 main () {
   docker run --rm \
-    --entrypoint /app/yt-downloader.sh \
-    --volume "$(pwd)/out":/out \
+    --entrypoint /app/download.sh \
+    -v "$(pwd)/out":/out \
     --env-file env.list \
     localhost:5000/alexmisk/yt-downloader:latest
 }
