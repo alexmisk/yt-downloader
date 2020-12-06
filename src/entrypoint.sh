@@ -4,7 +4,7 @@ set -e
 
 while :
 do
-  ./yt-downloader.sh
+  ./download.sh
   ./cleanup.sh
   ./sleep.sh
 done
