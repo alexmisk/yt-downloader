@@ -42,6 +42,7 @@ out_folder_hash () {
 @test "Do nothing if NUMBER_OF_EPISODES_TO_KEEP > current number of episodes" {
   echo "NUMBER_OF_EPISODES_TO_KEEP=6" >> env.list
   run main
+  ls out
   [ "$status" -eq 0 ]
   [[ "$output" =~ "Cleaning: Nothing deleted" ]]
   [ "$(out_folder_hash)" == $FOLDER_WITH_ALL_EPISODES_HASH ]
