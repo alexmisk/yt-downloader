@@ -45,7 +45,7 @@ out_folder_hash () {
   ls out
   [ "$status" -eq 0 ]
   [[ "$output" =~ "Cleaning: Nothing deleted" ]]
-  [ "$(out_folder_hash)" == $FOLDER_WITH_ALL_EPISODES_HASH ]
+  [ "$(out_folder_hash)" == "$FOLDER_WITH_ALL_EPISODES_HASH" ]
 }
 
 @test "Do nothing if NUMBER_OF_EPISODES_TO_KEEP = current number of episodes" {
