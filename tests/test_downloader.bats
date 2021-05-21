@@ -17,13 +17,14 @@ main () {
 }
 
 EMPTY_FOLDER_HASH=da39a3ee5e6b4b0d3255bfef95601890afd80709
-FOLDER_WITH_5_EPISODES_HASH=afc87eec6d6a4f06d0a29b4db7f609a63abd6c45
-FOLDER_WITH_3_RECENT_EPISOES_HASH=99cf029c2241f8428989145c79c6af425275cd5b
+FOLDER_WITH_ALL_EPISODES_HASH=d50e83af5f3836a70d936f2f97db446caf3a9f51
+FOLDER_WITH_3_RECENT_EPISOES_HASH=8f2f8f880601baebaf1505d0d01089ad674260ab
+FOLDER_WITH_CUSTOM_QUALITY_EPISOES_HASH=c9cdfbe146d7ac4a166e79bc0a27c57276935083
 
 out_folder_hash () {
   sha1sum out/*.mp3 \
   | awk '{print $1}' \
-  | shasum - \
+  | sha1sum - \
   | awk '{print $1}'
 }
 
@@ -39,7 +40,7 @@ out_folder_hash () {
 @test "Download with default parameters" {
   run main
   [ "$status" -eq 0 ]
-  [ "$(out_folder_hash)" == $FOLDER_WITH_5_EPISODES_HASH ]
+  [ "$(out_folder_hash)" == $FOLDER_WITH_ALL_EPISODES_HASH ]
 }
 
 @test "Download only 3 last items" {
@@ -53,7 +54,7 @@ out_folder_hash () {
   echo "AUDIO_QUALITY=3" >> env.list
   run main
   [ "$status" -eq 0 ]
-  [ "$(out_folder_hash)" == "afe5580e06d8fcf505ad2802b1201dc52c97942d" ]
+  [ "$(out_folder_hash)" == $FOLDER_WITH_CUSTOM_QUALITY_EPISOES_HASH]
 }
 
 @test "Save with custom filename template" {

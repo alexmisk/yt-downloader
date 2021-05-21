@@ -18,14 +18,15 @@ main () {
 }
 
 EMPTY_FOLDER_HASH=da39a3ee5e6b4b0d3255bfef95601890afd80709
-FOLDER_WITH_5_EPISODES_HASH=afc87eec6d6a4f06d0a29b4db7f609a63abd6c45
-FOLDER_WITH_3_RECENT_EPISOES_HASH=99cf029c2241f8428989145c79c6af425275cd5b
+FOLDER_WITH_ALL_EPISODES_HASH=d50e83af5f3836a70d936f2f97db446caf3a9f51
+FOLDER_WITH_3_RECENT_EPISOES_HASH=8f2f8f880601baebaf1505d0d01089ad674260ab
 
 out_folder_hash () {
   # Used to compare desirable content in /out folder
 
   sha1sum out/*.mp3 \
-    | shasum - \
+  	| awk '{print $1}' \
+	| sha1sum - \
     | awk '{print $1}'
 }
 
@@ -43,7 +44,7 @@ out_folder_hash () {
   run main
   [ "$status" -eq 0 ]
   [[ "$output" =~ "Cleaning: Nothing deleted" ]]
-  [ "$(out_folder_hash)" == $FOLDER_WITH_5_EPISODES_HASH ]
+  [ "$(out_folder_hash)" == $FOLDER_WITH_ALL_EPISODES_HASH ]
 }
 
 @test "Do nothing if NUMBER_OF_EPISODES_TO_KEEP = current number of episodes" {
@@ -51,7 +52,7 @@ out_folder_hash () {
   run main
   [ "$status" -eq 0 ]
   [[ "$output" =~ "Cleaning: Nothing deleted" ]]
-  [ "$(out_folder_hash)" == $FOLDER_WITH_5_EPISODES_HASH ]
+  [ "$(out_folder_hash)" == $FOLDER_WITH_ALL_EPISODES_HASH ]
 }
 
 @test "Keep only 3 recent episodes" {
