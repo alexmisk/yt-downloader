@@ -5,9 +5,12 @@ WORKDIR /app
 RUN \
   apk update && \
   apk --no-cache add bash curl ffmpeg findutils && \
-  curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /bin/youtube-dl && \
+  curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /bin/youtube-dl && \
   chmod a+rx /bin/youtube-dl
 
-ADD src /app 
+COPY requirements.txt /app
+RUN pip install -r requirements.txt
+
+ADD src /app
 
 ENTRYPOINT ["/app/entrypoint.sh"]
