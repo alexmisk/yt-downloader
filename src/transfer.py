@@ -28,5 +28,5 @@ enc_duration = str(tag.duration)
 
 
 s3.upload_file(filename_with_path, bucket, 'media/' + filename, ExtraArgs={"Metadata": {"artist": enc_artist, "title": enc_title, "duration": enc_duration}})
-s3.upload_file('downloaded.txt', bucket, 'downloaded.txt')
+s3.upload_file('/var/downloaded.txt', bucket, 'downloaded.txt')
 
