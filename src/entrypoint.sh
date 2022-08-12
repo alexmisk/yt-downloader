@@ -18,6 +18,7 @@ if [ -z ${NUMBER_OF_ITEMS_TO_DOWNLOAD+x} ]; then
 fi
 
 mkdir -p /var
+curl curl $DOWNLOADED_LINK -o /var/downloaded.txt
 
 youtube-dl -U
 
