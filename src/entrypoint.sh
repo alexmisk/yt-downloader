@@ -32,3 +32,5 @@ youtube-dl $PLAYLIST \
   --add-metadata \
   --exec 'touch -am {} && python transfer.py {}' \
   --ignore-errors
+
+python upload_dllist.py
