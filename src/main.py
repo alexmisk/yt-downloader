@@ -74,7 +74,7 @@ try:
         ydl.download(PLAYLIST_URL)
 
 
-    # s3.upload_file('downloaded.txt', bucket, 'downloaded.txt')
+    s3.upload_file('downloaded.txt', bucket, 'downloaded.txt')
 
 
 finally:
