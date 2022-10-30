@@ -67,7 +67,7 @@ try:
         PLAYLIST_URL = os.environ['PLAYLIST_URL']
     except:
         print('PLAYLIST_URL not set')
-        exit(1)
+        exit()
 
     with YoutubeDL(ydl_opts) as ydl:
         ydl.add_post_processor(MyCustomPP(), when='post_process')
