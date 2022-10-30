@@ -1,2 +1,3 @@
 boto3==1.24.47
 tinytag==1.8.1
+yt_dlp

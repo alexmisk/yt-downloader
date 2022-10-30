@@ -9,6 +9,6 @@ RUN \
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
 
-ADD src/main.py /app/main.py
+ADD src /app
 
-ENTRYPOINT ["python app/main.py"]
+ENTRYPOINT ["python", "app/main.py"]
