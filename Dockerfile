@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-            python3-dev gcc curl build-essential
+            python3-dev gcc curl build-essential ffmpeg
   
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
