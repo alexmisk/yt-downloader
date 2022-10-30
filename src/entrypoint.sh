@@ -18,6 +18,10 @@ if [ -z ${NUMBER_OF_ITEMS_TO_DOWNLOAD+x} ]; then
 fi
 
 mkdir -p /var
+
+touch /var/dl.lock
+python check_lock_file.py && exit 1
+
 curl $DOWNLOADED_LINK -o /var/downloaded.txt
 
 youtube-dl -U
