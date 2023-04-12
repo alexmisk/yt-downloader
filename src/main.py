@@ -33,49 +33,46 @@ class MyCustomPP(PostProcessor):
         s3.upload_file(filename_with_path, bucket, 'media/' + filename, ExtraArgs={"Metadata": {"artist": enc_artist, "title": enc_title, "duration": enc_duration}})
         return [], info
 
-try:
-
-    try:
-        s3.head_object(Bucket=bucket, Key='dl.lock')
-    except:
-        Path('dl.lock').touch()
-        s3.upload_file('dl.lock', bucket, 'dl.lock')
-    else:
-        print('Lockfile found, terminating...')
-        exit()
-
-    try:
-        s3.download_file(bucket, 'downloaded.txt', 'downloaded.txt')
-    except:
-        print('Download archive not found')
-
-    ydl_opts = {
-    'outtmpl': './media/%(id)s.%(ext)s',
-    'download_archive': 'downloaded.txt',
-    'format': 'mp3/bestaudio/best',
-    'postprocessors': [
-        {
-        'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
-        },
-        {
-        'key': 'FFmpegMetadata',
-        },
-        ]
+ydl_opts = {
+'ignoreerrors': 'True',
+'outtmpl': './media/%(id)s.%(ext)s',
+'download_archive': 'downloaded.txt',
+'format': 'mp3/bestaudio/best',
+'postprocessors': [
+    {
+    'key': 'FFmpegExtractAudio',
+    'preferredcodec': 'mp3',
+    },
+    {
+    'key': 'FFmpegMetadata',
+    },
+    ]
 }
-    try:
-        PLAYLIST_URL = os.environ['PLAYLIST_URL']
-    except:
-        print('PLAYLIST_URL not set')
-        exit()
 
-    with YoutubeDL(ydl_opts) as ydl:
-        ydl.add_post_processor(MyCustomPP(), when='post_process')
-        ydl.download(PLAYLIST_URL)
+try:
+    PLAYLIST_URL = os.environ['PLAYLIST_URL']
+except:
+    print('PLAYLIST_URL not set')
+    exit()
+
+try:
+    s3.head_object(Bucket=bucket, Key='dl.lock')
+except:
+    Path('dl.lock').touch()
+    s3.upload_file('dl.lock', bucket, 'dl.lock')
+else:
+    print('Lockfile found, terminating...')
+    exit()
+
+try:
+    s3.download_file(bucket, 'downloaded.txt', 'downloaded.txt')
+except:
+    print('Download archive not found')
+
+with YoutubeDL(ydl_opts) as ydl:
+    ydl.add_post_processor(MyCustomPP(), when='post_process')
+    ydl.download(PLAYLIST_URL)
 
 
-    s3.upload_file('downloaded.txt', bucket, 'downloaded.txt')
-
-
-finally:
-    s3.delete_object(Bucket=bucket, Key='dl.lock')
+s3.upload_file('downloaded.txt', bucket, 'downloaded.txt')
+s3.delete_object(Bucket=bucket, Key='dl.lock')
